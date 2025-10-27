@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal } from '@angular/core';
+import { Component, effect, inject, OnInit, signal } from '@angular/core';
 
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
@@ -9,6 +9,7 @@ import { PageData, Pagination, ProductData } from '@interfaces/index';
 import { ProductsService } from '@products-module/services/products.service';
 
 import { COMPONENT_LIST } from '../components';
+import { CategoryStore } from '@store/index';
 
 @Component({
   selector: 'app-products-index',
@@ -21,10 +22,12 @@ import { COMPONENT_LIST } from '../components';
     ConfirmDialogModule,
   ]
 })
-export default class ProductsIndexComponent {
+export default class ProductsIndexComponent implements OnInit {
   private messageService = inject(MessageService);
   private confirmationService = inject(ConfirmationService);
+
   readonly service = inject(ProductsService);
+  readonly categoryStore = inject(CategoryStore);
 
   table = signal<PageData<ProductData>>({
     items: [],
@@ -51,6 +54,9 @@ export default class ProductsIndexComponent {
         detail: alert.msg
       })
     })
+  }
+  ngOnInit(): void {
+    this.service.loadCategories()
   }
 
   onTableChange(event: Pagination) {
@@ -91,5 +97,9 @@ export default class ProductsIndexComponent {
         })
       },
     });
+  }
+
+  get categoriesData() {
+    return { loading: this.categoryStore.isLoading(), data: this.categoryStore.categories() }
   }
 }

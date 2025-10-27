@@ -16,13 +16,31 @@
 >
   <ng-template pTemplate="caption">
     <div class="flex justify-between items-center flex-wrap">
-      <h5 class="m-0 font-bold"><i class="pi pi-align-justify" style="color: green"></i> Listado de Productos</h5>
+      <h5 class="m-0 font-bold">
+        <i class="pi pi-align-justify" style="color: green"></i> Listado de Productos
+      </h5>
 
       <div class="flex gap-2">
-        <p-iconfield>
+        <div class="mb-4 w-[20rem] flex gap-2 items-top">
+          <label class="font-bold w-[5rem]">Filtrar Categoria</label>
+          <div class="w-[calc(100%-6rem)]">
+            <p-select
+              [options]="categoriesData().data"
+              [(ngModel)]="category"
+              optionLabel="name"
+              optionValue="name"
+              [showClear]="true"
+              (onChange)="loadTable()"
+              [loading]="categoriesData().loading"
+              class="w-full"
+            />
+          </div>
+        </div>
+        <p-iconfield class="h-fit">
           <p-inputicon class="pi pi-search" />
           <input
             type="text"
+            [(ngModel)]="search"
             (input)="dt.filterGlobal($any($event.target).value, 'contains')"
             pInputText
             placeholder="Buscar"

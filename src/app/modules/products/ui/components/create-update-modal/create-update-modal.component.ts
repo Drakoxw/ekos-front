@@ -1,7 +1,7 @@
 import { NgTemplateOutlet } from '@angular/common';
 import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { UpdateProduct } from '@interfaces/index';
+import { Category, UpdateProduct } from '@interfaces/index';
 import { ProductsService } from '@products-module/services/products.service';
 import { FormControlErrorPipe } from '@shared/pipes';
 
@@ -14,6 +14,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { SelectModule } from 'primeng/select';
 import { TextareaModule } from 'primeng/textarea';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
+import { CategoryStore } from '@store/index';
 
 @Component({
   selector: 'app-create-update-modal',
@@ -41,6 +42,7 @@ export class CreateUpdateModalComponent implements OnInit {
   @Input() id: number | null = null;
 
   readonly service = inject(ProductsService);
+  readonly categoryStore = inject(CategoryStore);
 
   form!: FormGroup;
   loading = false
@@ -119,8 +121,15 @@ export class CreateUpdateModalComponent implements OnInit {
           console.log(err)
         }
       })
-
     }
+  }
+
+  get categories(): Category[] {
+    return this.categoryStore.categories()
+  }
+
+  get loadingCategories(): boolean {
+    return this.categoryStore.isLoading()
   }
 
 }

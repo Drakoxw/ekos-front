@@ -52,13 +52,14 @@
     </div>
 
     <div class="mb-4 w-full md:w-6/12 flex gap-2 items-center">
-      <label class="font-bold w-[5rem]" for="category">Categoria</label>
+      <label class="font-bold w-[5rem]" >Categoria</label>
       <div class="w-[calc(100%-6rem)]">
         <p-select
-          [options]="service.categories()"
+          [options]="categories"
           formControlName="category"
           optionLabel="name"
           optionValue="name"
+          [loading]="loadingCategories"
           class="w-full"
         />
         @if(form.get('category') | formControlError) {
