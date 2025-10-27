@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@use "tailwindcss" as *;
 @import "primeicons/primeicons.css";
 
 .p-confirmdialog-reject-button {
