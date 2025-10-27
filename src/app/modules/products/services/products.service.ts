@@ -1,6 +1,7 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { ProductRequestService } from './product-request.service';
 import { Category, Pagination } from '@interfaces/index';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -25,15 +26,33 @@ export class ProductsService {
   }
 
   createProduct(payload: any) {
-    return this.apiService.create(payload);
+    return this.apiService.create(payload).pipe(map((r) => {
+      this.sendAlert.set({
+        type: r.error ? 'error' : 'success',
+        msg: r.msg
+      });
+      return r
+    }));
   }
 
   deleteProduct(id: number) {
-    return this.apiService.delete(id);
+    return this.apiService.delete(id).pipe(map((r) => {
+      this.sendAlert.set({
+        type: r.error ? 'error' : 'success',
+        msg: r.msg
+      });
+      return r
+    }));
   }
 
   updateProduct(id: number, payload: any) {
-    return this.apiService.update(id, payload);
+    return this.apiService.update(id, payload).pipe(map((r) => {
+      this.sendAlert.set({
+        type: r.error ? 'error' : 'success',
+        msg: r.msg
+      });
+      return r
+    }));
   }
 
   loadCategories() {

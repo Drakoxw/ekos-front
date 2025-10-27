@@ -1,3 +1,27 @@
-<p>
-  products-index works!
-</p>
+<header class="gradient-bg text-white shadow-lg">
+  <div class="mx-auto text-center p-4 bg-green-600 flex justify-center w-full">
+    <span class="text-xl font-bold">Gestor de Productos</span>
+  </div>
+</header>
+
+<div class="w-full p-4">
+  <app-table
+    [table]="table()"
+    (editItem)="toggleModal(true, $event)"
+    (tableChange)="onTableChange($event)"
+    (deleteItem)="onDeleteItem($event)"
+    (newItem)="toggleModal(true, null)"
+  />
+</div>
+
+@if(showModal) {
+<app-create-update-modal
+  [id]="itemId"
+  [show]="showModal"
+  (closeModal)="toggleModal(false, null)"
+  (savedData)="reloadTable()"
+/>
+}
+
+<p-toast />
+<p-confirmdialog />

@@ -7,11 +7,12 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 
 import { PageData, Pagination, ProductData } from '@interfaces/index';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
-  imports: [TableModule, ButtonModule, InputTextModule, IconFieldModule, InputIconModule]
+  imports: [TableModule, CurrencyPipe, ButtonModule, InputTextModule, IconFieldModule, InputIconModule]
 })
 export class TableComponent {
   @Output() tableChange = new EventEmitter<Pagination>()

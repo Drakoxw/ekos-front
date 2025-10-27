@@ -16,7 +16,7 @@
 >
   <ng-template pTemplate="caption">
     <div class="flex justify-between items-center flex-wrap">
-      <h5 class="m-0">Listado de Productos</h5>
+      <h5 class="m-0 font-bold"><i class="pi pi-align-justify" style="color: green"></i> Listado de Productos</h5>
 
       <div class="flex gap-2">
         <p-iconfield>
@@ -31,7 +31,7 @@
 
         <p-button
           icon="pi pi-plus"
-          label="Nuevo Snack"
+          label="Nuevo Producto"
           (onClick)="newItem.emit()"
           severity="success"
         />
@@ -54,7 +54,7 @@
       <td>{{ customer.id }}</td>
       <td>{{ customer.name }}</td>
       <td>{{ customer.category }}</td>
-      <td>{{ customer.price }}</td>
+      <td>{{ customer.price | currency }}</td>
       <td>
         <div class="flex justify-center gap-3">
           <p-button

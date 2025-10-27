@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import ProductsIndexComponent from './products-index.component';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 describe('ProductsIndexComponent', () => {
   let component: ProductsIndexComponent;
@@ -9,6 +10,7 @@ describe('ProductsIndexComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ProductsIndexComponent],
+      providers: [MessageService, ConfirmationService]
     }).compileComponents();
   });
 
