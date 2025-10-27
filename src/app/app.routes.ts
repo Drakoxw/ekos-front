@@ -1,8 +1,10 @@
 import { Routes } from '@angular/router';
 import { PATH } from '@constants/index';
+import { LayoutComponent } from '@shared/components';
 
 export const routes: Routes = [{
   path: '',
+  component: LayoutComponent,
   children: [
     {
       path: PATH.HOME,
