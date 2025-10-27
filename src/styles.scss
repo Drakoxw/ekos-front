@@ -1,3 +1,9 @@
 @import "tailwindcss";
 @import "primeicons/primeicons.css";
 
+.p-confirmdialog-reject-button {
+  @apply bg-red-600!;
+  @apply hover:bg-red-700!;
+  @apply border-red-700!;
+  @apply text-white!;
+}
