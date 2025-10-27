@@ -1,1 +1,1 @@
-export const URL_API_BASE = 'http://localhost:5131/api';
+export const URL_API_BASE = 'https://ekosapi-production.up.railway.app/api';

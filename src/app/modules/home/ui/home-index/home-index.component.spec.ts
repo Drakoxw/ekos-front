@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import HomeIndexComponent from './home-index.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 describe('HomeIndexComponent', () => {
   let component: HomeIndexComponent;
@@ -7,7 +8,8 @@ describe('HomeIndexComponent', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [ HomeIndexComponent ]
+      imports: [ HomeIndexComponent ],
+      providers: [provideAnimationsAsync()]
     })
     .compileComponents();
   });
