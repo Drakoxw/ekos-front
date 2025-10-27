@@ -7,11 +7,14 @@ export interface PageData<T> {
   pageSize: number
 }
 export interface PageResponse<T> extends ResponseBase<PageData<T>> {
-
 }
 
 export interface Pagination {
   page: number;
   pageSize: number;
   search: string;
+}
+
+export interface PaginationParams<T> extends Pagination {
+  params?: T
 }

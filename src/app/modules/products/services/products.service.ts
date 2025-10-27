@@ -1,7 +1,8 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { ProductRequestService } from './product-request.service';
-import { Category, Pagination } from '@interfaces/index';
+import { Pagination } from '@interfaces/index';
 import { map } from 'rxjs';
+import { CategoryStore } from '@store/categories.store';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,7 @@ import { map } from 'rxjs';
 export class ProductsService {
 
   private apiService = inject(ProductRequestService)
-
-  categories = signal<Category[]>([])
+  private categoryStore = inject(CategoryStore);
 
   sendAlert = signal<{ type: 'success' | 'error', msg: string }>({
     type: 'success',
@@ -56,10 +56,11 @@ export class ProductsService {
   }
 
   loadCategories() {
+    this.categoryStore.isLoading()
     this.apiService.listCategories().subscribe({
       next: (res) => {
         if (!res.error && res.data) {
-          this.categories.set(res.data)
+          this.categoryStore.update(res.data)
         }
       }
     });
