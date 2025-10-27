@@ -27,6 +27,9 @@
       "@shared/*": [
         "./src/app/shared/*"
       ],
+      "@mocks/*": [
+        "./src/app/core/mocks/*"
+      ],
       "@services/*": [
         "./src/app/core/services/*"
       ],
